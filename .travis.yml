@@ -10,7 +10,7 @@ before_install:
     - conda activate test
     - conda install -y pycodestyle
     - conda install --yes python=3.
-    - pip install --yes numpy
+    - pip install numpy
       
 script:
     - bash basics_test.sh
