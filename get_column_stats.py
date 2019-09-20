@@ -21,6 +21,31 @@ def getargs():
     return args
 
 
+def calculate_mean(V):
+    '''
+    if len(V) == 0:
+        raise ZeroDivisionError('ZeroDivisionError: V has len 0')
+    '''
+    mean = None
+    try:
+        mean = sum(V) / len(V)
+    except ZeroDivisionError as error:
+        print('ZeroDivisionError:{}'.format(error))
+        raise ZeroDivisionError('ZeroDivisionError: V has len 0')
+    return mean
+
+
+def calculate_stdev(V):
+    mean = calculate_mean(V)
+    stdev = None
+    try:
+        stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+    except ZeroDivisionError as error:
+        print('ZeroDivisionError:{}'.format(error))
+        raise ZeroDivisionError('ZeroDivisionError: V has len 0')
+    return stdev
+
+
 if __name__ == "__main__":
     # get argument parser config
     args = getargs()
@@ -43,6 +68,7 @@ if __name__ == "__main__":
     # col_num into a list V
     for line in file:
         A = [int(x) for x in line.split()]
+        # A = {1,2,3,4} A[100] A[0] A[1] A[100] index out of boundary
         try:
             V.append(A[args.col_num])
         except IndexError as error:
