@@ -13,3 +13,5 @@ before_install:
       
 script:
     - bash basics_test.sh
+    - python basics_test.py
+    - pycodestyle get_column_stats.py
